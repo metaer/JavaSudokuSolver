@@ -62,6 +62,7 @@ public class SudokuSolver implements SudokuSolverInterface {
 
     public byte[][] getSolutionArray(String str) throws UserErrorException{
         Validator.validateInputString(str);
+
         return getSolutionArray(SudokuFieldConverter.toArray(str));
     }
 
