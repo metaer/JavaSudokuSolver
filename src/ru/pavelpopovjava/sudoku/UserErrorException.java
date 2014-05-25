@@ -1,4 +1,4 @@
-package ru.pavelpopovjava.sudoku.exceptions;
+package ru.pavelpopovjava.sudoku;
 
 public class UserErrorException extends Exception {
 }

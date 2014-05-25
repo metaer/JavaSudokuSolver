@@ -1,6 +1,4 @@
-package ru.pavelpopovjava.sudoku.exceptions.UserErrorExceptionChildren;
-
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorException;
+package ru.pavelpopovjava.sudoku;
 
 /**
  * Это исключение выкидывается при неверном формате строки, например длина не равна 81 символу, либо неверный формат. (символы кроме цифр и точки)

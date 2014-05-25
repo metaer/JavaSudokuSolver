@@ -1,7 +1,5 @@
 package ru.pavelpopovjava.sudoku;
 
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorExceptionChildren.WrongInitialParameterException;
-
 class Validator {
     public static boolean minmax(int min, int max, int val){
         return !(val < min || val > max);

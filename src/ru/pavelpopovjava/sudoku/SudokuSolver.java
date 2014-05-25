@@ -1,11 +1,5 @@
 package ru.pavelpopovjava.sudoku;
 
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorException;
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorExceptionChildren.NoSolutionException;
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorExceptionChildren.WrongInitialConditionException;
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorExceptionChildren.WrongInitialParameterException;
-import ru.pavelpopovjava.sudoku.interfaces.SudokuSolverInterface;
-
 public class SudokuSolver implements SudokuSolverInterface {
 
     private SudokuSolver instance = new SudokuSolver();
@@ -25,7 +19,7 @@ public class SudokuSolver implements SudokuSolverInterface {
             if (e instanceof WrongInitialParameterException){
 
             }
-            else if (e instanceof WrongInitialConditionException){
+            else if (e instanceof WrongSudokuConditionException){
 
             }
             else if (e instanceof NoSolutionException){
@@ -46,7 +40,9 @@ public class SudokuSolver implements SudokuSolverInterface {
 
         SudokuField field = new SudokuField(arr);
 
+        field.validateSudokuCondition();
 
+        SudokuTask task = new SudokuTask(field);
     }
 
 
@@ -62,7 +58,6 @@ public class SudokuSolver implements SudokuSolverInterface {
 
     public byte[][] getSolutionArray(String str) throws UserErrorException{
         Validator.validateInputString(str);
-
         return getSolutionArray(SudokuFieldConverter.toArray(str));
     }
 

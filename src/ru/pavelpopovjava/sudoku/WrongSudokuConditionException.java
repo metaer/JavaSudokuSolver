@@ -1,9 +1,7 @@
-package ru.pavelpopovjava.sudoku.exceptions.UserErrorExceptionChildren;
-
-import ru.pavelpopovjava.sudoku.exceptions.UserErrorException;
+package ru.pavelpopovjava.sudoku;
 
 /**
  * Выкидывается, когда начальный параметр не соответствует условиям задачи судоку (без повторений в строке, в столбце, в малом квадрате)
  */
-public class WrongInitialConditionException extends UserErrorException {
+public class WrongSudokuConditionException extends UserErrorException {
 }

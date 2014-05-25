@@ -1,10 +1,5 @@
 package ru.pavelpopovjava.sudoku;
 
-import ru.pavelpopovjava.sudoku.SudokuFieldConverter;
-import ru.pavelpopovjava.sudoku.interfaces.SudokuFieldInterface;
-
-import javax.swing.*;
-
 class SudokuField implements SudokuFieldInterface {
 
     /**
@@ -34,14 +29,18 @@ class SudokuField implements SudokuFieldInterface {
 
                 y++;
 
-                /*if ( Validator.minmax(0,9,val)){
-                    throw new RuntimeException("Внутренняя ошибка. Неверное значение ячейки внутри массива. Значения ячеек должны быть в пределах от 0 до 9");
-                }*/
+                if ( Validator.minmax(0,9,val)){
+                    throw new RuntimeException("Ошибка библиотеки. Неверное значение ячейки внутри массива. Значения ячеек должны быть в пределах от 0 до 9");
+                }
 
                 arr[x-1][y-1] = val;
 
             }
         }
+    }
+
+    public void validateSudokuCondition() throws WrongSudokuConditionException{
+
     }
 
     public byte getCellValue(byte col, byte row){

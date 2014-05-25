@@ -1,6 +1,6 @@
-package ru.pavelpopovjava.sudoku.interfaces;
+package ru.pavelpopovjava.sudoku;
 
-public interface SudokuFieldInterface {
+interface SudokuFieldInterface {
 
     public byte getCellValue(byte col, byte row);
 
