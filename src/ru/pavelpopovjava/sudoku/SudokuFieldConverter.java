@@ -34,6 +34,17 @@ class SudokuFieldConverter {
      */
     public static byte[][] toArray(String str){
 
+        assert (str.length() == 81);
+
+        byte[][] arr = new byte[9][9];
+
+        for (int j = 0; j < 9; j++){
+            for (int i = 0; i < 9; i++){
+                arr[i][j] = Byte.valueOf(String.valueOf(str.charAt(9 * j + i)));
+            }
+        }
+
+        return arr;
     }
 
     public static byte[][] toArray(SudokuField field){

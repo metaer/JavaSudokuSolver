@@ -29,9 +29,7 @@ class SudokuField implements SudokuFieldInterface {
 
                 y++;
 
-                if ( Validator.minmax(0,9,val)){
-                    throw new RuntimeException("Ошибка библиотеки. Неверное значение ячейки внутри массива. Значения ячеек должны быть в пределах от 0 до 9");
-                }
+                assert Validator.minmax(0,9,val);
 
                 arr[x-1][y-1] = val;
 
@@ -44,17 +42,14 @@ class SudokuField implements SudokuFieldInterface {
     }
 
     public byte getCellValue(byte col, byte row){
-
-        //TODO Сделать проверку на входные параметры
-
-        return 1;
+        assert Validator.minmax(1,9,col);
+        assert Validator.minmax(1,9,row);
     }
 
     public byte setCellValue(byte col, byte row, byte val){
-
-        //TODO Сделать проверку на входные параметры
-
-        return 1;
+        assert Validator.minmax(1,9,col);
+        assert Validator.minmax(1,9,row);
+        assert Validator.minmax(0,9,val);
     }
 
     public boolean completelyFilled(){
