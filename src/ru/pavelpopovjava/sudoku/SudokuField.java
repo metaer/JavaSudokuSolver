@@ -31,7 +31,7 @@ class SudokuField implements SudokuFieldInterface {
 
                 assert Validator.minmax(0,9,val);
 
-                arr[x-1][y-1] = val;
+                field[x-1][y-1] = val;
 
             }
         }
@@ -44,19 +44,32 @@ class SudokuField implements SudokuFieldInterface {
     public byte getCellValue(byte col, byte row){
         assert Validator.minmax(1,9,col);
         assert Validator.minmax(1,9,row);
+
+        return field[col-1][row-1];
     }
 
     public byte setCellValue(byte col, byte row, byte val){
         assert Validator.minmax(1,9,col);
         assert Validator.minmax(1,9,row);
         assert Validator.minmax(0,9,val);
+
+        field[col-1][row-1] = val;
+
     }
 
     public boolean completelyFilled(){
+        for (byte[] col : field){
+            for (byte val : col){
+                if (val == 0){
+                    return false;
+                }
+            }
+        }
 
+        return true;
     }
 
-    public String toString(){
+/*    public String toString(){
 
-    }
+    }*/
 }

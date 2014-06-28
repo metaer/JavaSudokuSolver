@@ -1,9 +1,9 @@
 package ru.pavelpopovjava.sudoku;
 
 class SudokuFieldConverter {
-    public static String toString(SudokuField field){
+/*    public static String toString(SudokuField field){
         return field.toString();
-    }
+    }*/
 
     /**
      * Если в качестве индексов используются переменные i,j - то их нумерация начинается с 0. Если x,y - с одного
@@ -47,7 +47,7 @@ class SudokuFieldConverter {
         return arr;
     }
 
-    public static byte[][] toArray(SudokuField field){
+/*    public static byte[][] toArray(SudokuField field){
         return field.getField();
-    }
+    }*/
 }
