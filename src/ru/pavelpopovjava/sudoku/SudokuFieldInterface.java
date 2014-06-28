@@ -2,9 +2,9 @@ package ru.pavelpopovjava.sudoku;
 
 interface SudokuFieldInterface {
 
-    public byte getCellValue(byte col, byte row);
+    public int getCellValue(int col, int row);
 
-    public byte setCellValue(byte col, byte row, byte val);
+    public void setCellValue(int col, int row, int val);
 
     public boolean completelyFilled();
 }

@@ -1,4 +1,4 @@
 package ru.pavelpopovjava.sudoku;
 
-public class NoSolutionException extends UserErrorException {
+public final class NoSolutionException extends SudokuSolverException {
 }
