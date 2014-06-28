@@ -12,6 +12,7 @@ class Validator {
      */
     public static void validateInputString(String str) throws WrongInitialStringException{
 
+
     }
 
     /**
