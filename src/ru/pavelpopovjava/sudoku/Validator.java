@@ -11,8 +11,8 @@ class Validator {
      * @throws WrongInitialStringException
      */
     public static void validateInputString(String str) throws WrongInitialStringException{
-
-
+        validateInputStringForLength(str);
+        //validateInputStringForSymbols(str);
     }
 
     /**
@@ -24,5 +24,15 @@ class Validator {
 
     }
 
+    private static void validateInputStringForLength(String str) throws WrongInitialStringLengthException{
+        int length = str.length();
+
+        if (length == 81){
+            return;
+        }
+        else {
+            throw new WrongInitialStringLengthException(length);
+        }
+    }
 
 }
