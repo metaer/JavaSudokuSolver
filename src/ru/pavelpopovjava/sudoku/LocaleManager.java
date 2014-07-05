@@ -1,8 +1,8 @@
-package ru.pavelpopovjava.sudoku.LocalePack;
+package ru.pavelpopovjava.sudoku;
 
 import java.util.Arrays;
 
-public class LocaleManager {
+public final class LocaleManager {
 
     private static final String[] AVAILABLE_LOCALES = {
             "en", //English

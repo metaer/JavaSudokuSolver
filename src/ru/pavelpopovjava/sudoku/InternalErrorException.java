@@ -3,7 +3,7 @@ package ru.pavelpopovjava.sudoku;
 
 public class InternalErrorException extends RuntimeException {
 
-    final private String INTERNAL_LIBRARY_MESSAGE = "Внутренняя ошибка библиотеки ru.pavelpopovjava.sudoku: ";
+    final private String INTERNAL_ERROR_LIBRARY_MESSAGE = "Внутренняя ошибка библиотеки ru.pavelpopovjava.sudoku: ";
 
     private String message;
 
@@ -11,7 +11,7 @@ public class InternalErrorException extends RuntimeException {
     }
 
     public InternalErrorException(String message){
-        this.message = INTERNAL_LIBRARY_MESSAGE + message;
+        this.message = INTERNAL_ERROR_LIBRARY_MESSAGE + message;
     }
 
     public String getMessage(){

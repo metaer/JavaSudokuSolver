@@ -1,6 +1,4 @@
-package ru.pavelpopovjava.sudoku.LocalePack;
-
-import ru.pavelpopovjava.sudoku.InternalErrorException;
+package ru.pavelpopovjava.sudoku;
 
 import java.lang.reflect.Field;
 
@@ -12,11 +10,12 @@ class Message {
         String locale = LocaleManager.getCurrentLocale();
 
         try {
-            Field field = this.getClass().getDeclaredField(locale);
+            Field field = this.getClass().getSuperclass().getDeclaredField(locale);
             return (String) field.get(this);
         } catch (Exception e) {
             throw new InternalErrorException(e.getMessage());
         }
 
     }
+
 }

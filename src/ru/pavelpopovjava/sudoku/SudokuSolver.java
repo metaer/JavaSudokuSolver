@@ -63,33 +63,6 @@ public final class SudokuSolver implements SudokuSolverInterface {
         return SudokuFieldConverter.toString(getSolutionArray(str));
     }
 
-    /**
-     * Получает Json строку с решением или инфой об ошибке.
-     * @param str
-     * @return
-     */
-    public String getSolutionJsonString(String str){
-
-        String solution = "";
-
-        try{
-            solution = getSolutionString(str);
-        }
-        catch (SudokuSolverException e){
-            if (e instanceof WrongInitialParameterException){
-
-            }
-            else if (e instanceof WrongSudokuConditionException){
-
-            }
-            else if (e instanceof NoSolutionException){
-
-            }
-        }
-
-        return solution;
-
-    }
 
     /**
      * Конструктор закрыт, т.к. используем паттерн Singleton

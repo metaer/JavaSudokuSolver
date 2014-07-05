@@ -14,6 +14,13 @@ public final class WrongInitialStringLengthException extends WrongInitialStringE
     }
 
     public String getMessage(){
-        return "Ожидалась строка длиной 81 символ. Получена строка длиной " + String.valueOf(length) + " символов.";
+        return new WrongInitialStringLengthMessage(length).getMessage();
+    }
+}
+
+final class WrongInitialStringLengthMessage extends Message {
+    public WrongInitialStringLengthMessage(int receivedLength){
+        this.ru = "Ожидалась строка длиной 81 символ. Получена строка длиной " + receivedLength + " символов.";
+        this.en = "Expected 81-length string. " + receivedLength + "-length string received.";
     }
 }

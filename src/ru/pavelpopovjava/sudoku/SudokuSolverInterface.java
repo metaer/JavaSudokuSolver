@@ -29,9 +29,5 @@ interface SudokuSolverInterface {
      */
     public String getSolutionString(String str) throws SudokuSolverException;
 
-    /**
-     * Json строка с решением или инфой об ошибке
-     */
-    public String getSolutionJsonString(String str);
 
 }
