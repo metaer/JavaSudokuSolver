@@ -78,12 +78,21 @@ public final class WrongInitialStringSymbolException extends WrongInitialStringE
 
 class WrongInitialStringSymbolMessage extends Message {
     WrongInitialStringSymbolMessage(int errorSymbolPosition, char foundedSymbol, String initialString){
-        ru = "Ошибка в переданной строке (" + initialString + "):" + "";//TODO
-        en = "";
+        String fpMessage = new ErrorInPassedStringMessage(initialString).getMessage();
+        ru = fpMessage + "";//TODO
+        en = fpMessage + "";//TODO
     }
     WrongInitialStringSymbolMessage(int[] errorSymbolPositions, char[] foundedSymbols, String initialString){
-        ru = "";
-        en = "";
+        String fpMessage = new ErrorInPassedStringMessage(initialString).getMessage();
+        ru = fpMessage + "";//TODO
+        en = fpMessage + "";//TODO"";
+    }
+
+    class ErrorInPassedStringMessage extends Message{
+        ErrorInPassedStringMessage(String initialString) {
+            ru = "Ошибка в переданной строке (" + initialString + "). ";
+            en = "Wrong input string (" + initialString + "). ";
+        }
     }
 }
 
