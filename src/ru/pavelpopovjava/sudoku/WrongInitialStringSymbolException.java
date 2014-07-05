@@ -85,7 +85,7 @@ class WrongInitialStringSymbolMessage extends Message {
     WrongInitialStringSymbolMessage(int[] errorSymbolPositions, char[] foundedSymbols, String initialString){
         String fpMessage = new ErrorInPassedStringMessage(initialString).getMessage();
         ru = fpMessage + "";//TODO
-        en = fpMessage + "";//TODO"";
+        en = fpMessage + "";//TODO
     }
 
     class ErrorInPassedStringMessage extends Message{
