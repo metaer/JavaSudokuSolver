@@ -20,7 +20,7 @@ public final class WrongInitialStringLengthException extends WrongInitialStringE
 
 final class WrongInitialStringLengthMessage extends Message {
     public WrongInitialStringLengthMessage(int receivedLength){
-        this.ru = "Ожидалась строка длиной 81 символ. Получена строка длиной " + receivedLength + " символов.";
-        this.en = "Expected 81-length string. " + receivedLength + "-length string received.";
+        ru = "Ожидалась строка длиной 81 символ. Получена строка длиной " + receivedLength + " символов.";
+        en = "Expected 81-length string. " + receivedLength + "-length string received.";
     }
 }
