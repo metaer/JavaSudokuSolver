@@ -4,6 +4,12 @@ public final class SudokuSolver implements SudokuSolverInterface {
 
     private static SudokuSolver instance = new SudokuSolver();
 
+    private String initialString = "not defined yet";
+
+    String getInitialString() {
+        return initialString;
+    }
+
     public static SudokuSolver getInstance() {
         return instance;
     }
@@ -16,9 +22,15 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @throws SudokuSolverException
      */
     public int[][] getSolutionArray(String str) throws SudokuSolverException{
-        Validator.validateInputString(str);
-        str = Converter.pointsToZeros(str); //заменяем все точки на нули
-        return getSolutionArray(SudokuFieldConverter.toArray(str));
+        try{
+            initialString = str;
+            Validator.validateInputString(str);
+            str = Converter.pointsToZeros(str); //replace points to zeros
+            return getSolutionArray(SudokuFieldConverter.toArray(str));
+        }
+        catch (RuntimeException e) { //catch internal library errors
+            throw new InternalErrorException(e.toString());
+        }
     }
 
     /**
@@ -29,7 +41,12 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @throws SudokuSolverException
      */
     public String getSolutionString(String str) throws SudokuSolverException{
-        return SudokuFieldConverter.toString(getSolutionArray(str));
+        try{
+            return SudokuFieldConverter.toString(getSolutionArray(str));
+        }
+        catch (RuntimeException e) { //catch internal library errors
+            throw new InternalErrorException(e.toString());
+        }
     }
 
     /**
@@ -41,13 +58,14 @@ public final class SudokuSolver implements SudokuSolverInterface {
      */
     private int[][] getSolutionArray(int[][] arr) throws SudokuSolverException{
 
-        SudokuField field = new SudokuField(arr);
+            SudokuField field = new SudokuField(arr);
 
-        field.validateSudokuCondition();
+            field.validateSudokuCondition();
 
-        //SudokuTask task = new SudokuTask(field);
+            //pass pure field to SudokuTask
+            SudokuTask task = new SudokuTask(field);
 
-        return new int[9][9];
+            return new int[9][9];
     }
 
 

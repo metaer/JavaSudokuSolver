@@ -45,10 +45,10 @@ class SudokuField implements SudokuFieldInterface {
     }
 
     public void setCellValue(int col, int row, int val){
-        assert Validator.minmax(1,9,col);
-        assert Validator.minmax(1,9,row);
-        assert Validator.minmax(0,9,val);
-        InternalErrorFinder.condChecker(Validator.minmax(0,9,val), "001");
+
+        if (!Validator.minmax(1,9,val)) {
+            throw new RuntimeException("val in setCellValue(int col, int row, int val) should be from 1 to 9");
+        }
 
         field[col-1][row-1] = val;
 

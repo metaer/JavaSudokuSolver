@@ -9,11 +9,11 @@ class Message {
     public String getMessage() {
         String locale = LocaleManager.getCurrentLocale();
 
-        try {
+        try{
             Field field = this.getClass().getSuperclass().getDeclaredField(locale);
             return (String) field.get(this);
         } catch (Exception e) {
-            throw new InternalErrorException(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
 
     }

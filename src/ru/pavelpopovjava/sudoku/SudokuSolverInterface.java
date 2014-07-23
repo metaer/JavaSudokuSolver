@@ -16,6 +16,4 @@ interface SudokuSolverInterface {
      * На входе строка 81 символ: цифры от 1 до 9 и точки
      */
     public String getSolutionString(String str) throws SudokuSolverException;
-
-
 }
