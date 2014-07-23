@@ -9,15 +9,37 @@ public final class SudokuSolver implements SudokuSolverInterface {
     }
 
     /**
+     * Метод 3.
+     * Получает массив по строке. Использует метод 1.
+     * @param str
+     * @return
+     * @throws SudokuSolverException
+     */
+    public int[][] getSolutionArray(String str) throws SudokuSolverException{
+        Validator.validateInputString(str);
+        str = Converter.pointsToZeros(str); //заменяем все точки на нули
+        return getSolutionArray(SudokuFieldConverter.toArray(str));
+    }
+
+    /**
+     * Метод 4.
+     * Получает строку по строке. Использует метод 3, который в свою очередь использует Метод 1.
+     * @param str
+     * @return
+     * @throws SudokuSolverException
+     */
+    public String getSolutionString(String str) throws SudokuSolverException{
+        return SudokuFieldConverter.toString(getSolutionArray(str));
+    }
+
+    /**
      * Метод 1. Основной метод!
      * Получает массив по массиву
      * @param arr
      * @return
      * @throws SudokuSolverException
      */
-    public int[][] getSolutionArray(int[][] arr) throws SudokuSolverException{
-
-        Validator.validateInputArrayAsInitialParameter(arr);
+    private int[][] getSolutionArray(int[][] arr) throws SudokuSolverException{
 
         SudokuField field = new SudokuField(arr);
 
@@ -36,31 +58,8 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @return
      * @throws SudokuSolverException
      */
-    public String getSolutionString(int[][] arr) throws SudokuSolverException{
+    private String getSolutionString(int[][] arr) throws SudokuSolverException{
         return SudokuFieldConverter.toString(getSolutionArray(arr));
-    }
-
-    /**
-     * Метод 3.
-     * Получает массив по строке. Использует метод 1.
-     * @param str
-     * @return
-     * @throws SudokuSolverException
-     */
-    public int[][] getSolutionArray(String str) throws SudokuSolverException{
-        Validator.validateInputString(str);
-        return getSolutionArray(SudokuFieldConverter.toArray(str));
-    }
-
-    /**
-     * Метод 4.
-     * Получает строку по строке. Использует метод 3, который в свою очередь использует Метод 1.
-     * @param str
-     * @return
-     * @throws SudokuSolverException
-     */
-    public String getSolutionString(String str) throws SudokuSolverException{
-        return SudokuFieldConverter.toString(getSolutionArray(str));
     }
 
 
