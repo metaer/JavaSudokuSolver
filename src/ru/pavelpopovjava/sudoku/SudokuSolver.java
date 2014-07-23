@@ -62,10 +62,11 @@ public final class SudokuSolver implements SudokuSolverInterface {
 
             field.validateSudokuCondition();
 
-            //pass pure field to SudokuTask
-            SudokuTask task = new SudokuTask(field);
+            SudokuTask task = new SudokuTask(field); //pass pure field to SudokuTask
 
-            return new int[9][9];
+            SudokuField solution = task.getSolution();
+
+            return solution.toArray();
     }
 
 

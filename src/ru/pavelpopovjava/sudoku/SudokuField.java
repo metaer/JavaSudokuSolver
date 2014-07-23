@@ -11,6 +11,10 @@ class SudokuField implements SudokuFieldInterface {
         setField(arr);
     }
 
+    public int[][] toArray() {
+        return field;
+    }
+
     private void setField(int[][] arr){
 
         int x = 0; //Номер колонки (нумерация начинается с 1)
@@ -34,8 +38,9 @@ class SudokuField implements SudokuFieldInterface {
     }
 
     public void validateSudokuCondition() throws WrongSudokuConditionException{
-
+        SudokuConditionValidator.validateInitialCondition(this);
     }
+
 
     public int getCellValue(int col, int row){
         assert Validator.minmax(1,9,col);

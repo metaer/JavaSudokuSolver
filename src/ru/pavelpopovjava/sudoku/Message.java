@@ -9,6 +9,10 @@ class Message {
     public String getMessage() {
         String locale = LocaleManager.getCurrentLocale();
 
+        /*Названия полей в сообщениях (en, ru) соответствуют строковым представлениям локалей.
+        При добавлении нового языка достаточно будет лишь добавить свойство в класс-потомок класса Message
+        Используем рефлексию*/
+
         try{
             Field field = this.getClass().getSuperclass().getDeclaredField(locale);
             return (String) field.get(this);

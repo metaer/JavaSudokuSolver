@@ -10,7 +10,7 @@ public class InternalErrorException extends SudokuSolverException {
         this.message = getFirstPartMessage();
     }
 
-    public InternalErrorException(String inputMessage){
+    InternalErrorException(String inputMessage){
         this.message = getFirstPartMessage() + inputMessage + ". " + new BugReportMessage(initialString).getMessage();
     }
 

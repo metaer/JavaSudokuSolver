@@ -14,8 +14,8 @@ class SudokuFieldConverter {
 
         String s = "";
 
-        for (j = 0; j < 9; j++){
-            for (i = 0; i < 9; i++){
+        for (j = 0; j < Constants.FIELD_SIZE; j++){
+            for (i = 0; i < Constants.FIELD_SIZE; i++){
                 s += arr[i][j];
             }
         }
@@ -36,8 +36,8 @@ class SudokuFieldConverter {
 
         int[][] arr = new int[9][9];
 
-        for (int j = 0; j < 9; j++){
-            for (int i = 0; i < 9; i++){
+        for (int j = 0; j < Constants.FIELD_SIZE; j++){
+            for (int i = 0; i < Constants.FIELD_SIZE; i++){
                 arr[i][j] = Integer.valueOf(String.valueOf(str.charAt(9 * j + i)));
             }
         }
