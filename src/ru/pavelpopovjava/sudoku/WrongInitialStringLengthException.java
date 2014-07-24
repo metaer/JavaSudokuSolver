@@ -2,20 +2,20 @@ package ru.pavelpopovjava.sudoku;
 
 public final class WrongInitialStringLengthException extends WrongInitialStringException {
 
-    private int length;
+    private int passedLength;
 
-    public int getLength() {
-        return length;
+    public int getPassedLength() {
+        return passedLength;
     }
 
-    public WrongInitialStringLengthException(int length){
+    public WrongInitialStringLengthException(int passedLength){
         super();
-        this.length = length;
+        this.passedLength = passedLength;
     }
 
     @Override
     public String getMessage(){
-        return new WrongInitialStringLengthMessage(length).getMessage();
+        return new WrongInitialStringLengthMessage(passedLength).getMessage();
     }
 }
 

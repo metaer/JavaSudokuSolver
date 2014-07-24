@@ -1,4 +1,4 @@
 package ru.pavelpopovjava.sudoku;
 
-public interface LibraryInterface {
+interface SudokuLibraryInterface {
 }

@@ -1,6 +1,6 @@
 package ru.pavelpopovjava.sudoku;
 
-public interface LocalManagerInterface {
+interface LocalManagerInterface extends SudokuLibraryInterface {
     public void setCurrentLocale(String currentLocale);
     public String getCurrentLocale();
 }

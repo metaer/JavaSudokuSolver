@@ -1,6 +1,6 @@
 package ru.pavelpopovjava.sudoku;
 
-public class RepeatInSquareException extends WrongSudokuConditionException {
+public final class RepeatInSquareException extends WrongSudokuConditionException {
     private int col;
     private int row;
     private int squareNumber;

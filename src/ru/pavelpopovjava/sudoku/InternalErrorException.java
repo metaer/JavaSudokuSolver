@@ -1,7 +1,7 @@
 package ru.pavelpopovjava.sudoku;
 
 
-public final class InternalErrorException extends SudokuSolverException {
+public final class InternalErrorException extends SudokuSolverLibException {
 
     private String initialString = SudokuSolver.getInstance().getInitialString();
     private String message;

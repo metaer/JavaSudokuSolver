@@ -37,7 +37,7 @@ class SudokuField implements SudokuFieldInterface {
         }
     }
 
-    public void validateSudokuCondition() throws WrongSudokuConditionException{
+    void validateSudokuCondition() throws WrongSudokuConditionException{
         SudokuConditionValidator.validateInitialCondition(this);
     }
 

@@ -20,9 +20,9 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * Получает массив по строке. Использует метод 1.
      * @param str
      * @return
-     * @throws SudokuSolverException
+     * @throws SudokuSolverLibException
      */
-    public int[][] getSolutionArray(String str) throws SudokuSolverException{
+    public int[][] getSolutionArray(String str) throws SudokuSolverLibException {
         try{
             initialString = str;
             Validator.validateInputString(str);
@@ -39,9 +39,9 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * Получает строку по строке. Использует метод 3, который в свою очередь использует Метод 1.
      * @param str
      * @return
-     * @throws SudokuSolverException
+     * @throws SudokuSolverLibException
      */
-    public String getSolutionString(String str) throws SudokuSolverException{
+    public String getSolutionString(String str) throws SudokuSolverLibException {
         try{
             return SudokuFieldConverter.toString(getSolutionArray(str));
         }
@@ -55,9 +55,9 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * Получает массив по массиву
      * @param arr
      * @return
-     * @throws SudokuSolverException
+     * @throws SudokuSolverLibException
      */
-    private int[][] getSolutionArray(int[][] arr) throws SudokuSolverException{
+    private int[][] getSolutionArray(int[][] arr) throws SudokuSolverLibException {
 
             SudokuField field = new SudokuField(arr);
 
@@ -76,9 +76,9 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * Получает строку по массиву. Использует метод 1.
      * @param arr
      * @return
-     * @throws SudokuSolverException
+     * @throws SudokuSolverLibException
      */
-    private String getSolutionString(int[][] arr) throws SudokuSolverException{
+    private String getSolutionString(int[][] arr) throws SudokuSolverLibException {
         return SudokuFieldConverter.toString(getSolutionArray(arr));
     }
 
