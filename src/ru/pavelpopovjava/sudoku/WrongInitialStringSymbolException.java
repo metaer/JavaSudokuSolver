@@ -38,6 +38,7 @@ public final class WrongInitialStringSymbolException extends WrongInitialStringE
 
     }
 
+    @Override
     public String getMessage() {
 
         if (errorSymbolPositions.size() == 0) {

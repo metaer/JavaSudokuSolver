@@ -13,6 +13,7 @@ public final class WrongInitialStringLengthException extends WrongInitialStringE
         this.length = length;
     }
 
+    @Override
     public String getMessage(){
         return new WrongInitialStringLengthMessage(length).getMessage();
     }

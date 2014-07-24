@@ -9,7 +9,6 @@ public class LocalManager implements LocalManagerInterface {
         return ourInstance;
     }
 
-
     private final String DEFAULT_LOCALE = "en";
 
     private final String[] AVAILABLE_LOCALES = {
