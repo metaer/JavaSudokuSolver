@@ -1,11 +1,11 @@
-package ru.pavelpopovjava.sudoku;
+package ru.metaer.javasudokusolver;
 
 import java.util.Arrays;
 
-public class LocalManager implements LocalManagerInterface {
-    private static LocalManager ourInstance = new LocalManager();
+public class LanguageManager implements LanguageManagerInterface {
+    private static LanguageManager ourInstance = new LanguageManager();
 
-    public static LocalManager getInstance() {
+    public static LanguageManager getInstance() {
         return ourInstance;
     }
 
@@ -31,6 +31,6 @@ public class LocalManager implements LocalManagerInterface {
     }
 
 
-    private LocalManager() {
+    private LanguageManager() {
     }
 }
