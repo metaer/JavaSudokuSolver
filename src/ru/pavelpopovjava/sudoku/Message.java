@@ -7,7 +7,7 @@ class Message {
     protected String ru; //Message in Russian
 
     public String getMessage() {
-        String locale = LocaleManager.getCurrentLocale();
+        String locale = LocalManager.getInstance().getCurrentLocale();
 
         /*Названия полей в сообщениях (en, ru) соответствуют строковым представлениям локалей.
         При добавлении нового языка достаточно будет лишь добавить свойство в класс-потомок класса Message

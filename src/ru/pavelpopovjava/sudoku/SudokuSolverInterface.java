@@ -3,7 +3,7 @@ package ru.pavelpopovjava.sudoku;
 /**
  * API библиотеки!
  */
-interface SudokuSolverInterface {
+interface SudokuSolverInterface extends LibraryInterface {
 
     /**
      * Получает массив по строке

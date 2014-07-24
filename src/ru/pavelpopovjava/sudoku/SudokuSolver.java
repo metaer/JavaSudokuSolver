@@ -14,6 +14,7 @@ public final class SudokuSolver implements SudokuSolverInterface {
         return instance;
     }
 
+
     /**
      * Метод 3.
      * Получает массив по строке. Использует метод 1.

@@ -21,9 +21,12 @@ class SudokuConditionValidator {
         for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
             int currentFigure = field.getCellValue(col,row);
             if (figures.contains(String.valueOf(currentFigure))) {
-                throw new RepeatInRowException(col,row);
+                throw new RepeatInRowException(col,row,currentFigure);
             }
-            figures += currentFigure;
+
+            if (currentFigure != 0) {
+                figures += currentFigure;
+            }
         }
     }
 
@@ -40,15 +43,57 @@ class SudokuConditionValidator {
         for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
             int currentFigure = field.getCellValue(col,row);
             if (figures.contains(String.valueOf(currentFigure))) {
-                throw new RepeatInColumnException(col,row);
+                throw new RepeatInColumnException(col,row,currentFigure);
             }
-            figures += currentFigure;
+
+            if (currentFigure != 0) {
+                figures += currentFigure;
+            }
         }
     }
 
     private static void validateSmallSquaresCondition(SudokuField field) throws RepeatInSquareException {
 
+        for (int squareNumber = 0; squareNumber < 9; squareNumber++) {
+            validateOneSmallSquare(field, squareNumber + 1);
+        }
+
     }
 
+    private static void validateOneSmallSquare(SudokuField field, int squareNumber) throws RepeatInSquareException {
+
+        //Зададим начальные координаты x,y для обхода малого квадрата
+
+        int x = getInitialXCoordBySmallSquareNumber(squareNumber);
+        int y = getInitialYCoordBySmallSquareNumber(squareNumber);
+
+        String figures = ""; //цифры в колонке
+
+        for (int col = x; col <= x+2; col++){
+            for (int row = y; row <= y+2; row++){
+
+                int currentFigure = field.getCellValue(col,row);
+
+                if (figures.contains(String.valueOf(currentFigure))) {
+                    throw new RepeatInSquareException(col,row,squareNumber,currentFigure);
+                }
+
+                if (currentFigure != 0) {
+                    figures += currentFigure;
+                }
+
+            }
+        }
+
+
+    }
+
+    private static int getInitialXCoordBySmallSquareNumber(int n) {
+        return 1 + 3 * (n - 1 -((n-1)/3)*3) ;
+    }
+
+    private static int getInitialYCoordBySmallSquareNumber(int n) {
+        return 1 + ((n-1)/3) * 3;
+    }
 
 }
