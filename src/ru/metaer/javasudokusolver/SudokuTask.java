@@ -17,7 +17,7 @@ class SudokuTask {
     }
 
     /**
-     * Устанавливает переменную outputField
+     * Может устанавливать переменную outputField
      * @throws NoSolutionException
      */
     private void solveSudoku() throws NoSolutionException{
