@@ -71,7 +71,8 @@ class SudokuField implements SudokuFieldInterface {
         return true;
     }
 
-/*    public String toString(){
-
-    }*/
+    @Override
+    public String toString() {
+        return super.toString();//TODO сделать этот метод. Отрисовка поля
+    }
 }
