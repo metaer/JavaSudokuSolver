@@ -3,10 +3,11 @@ package ru.metaer.javasudokusolver;
 import java.util.HashMap;
 
 class SudokuTaskTree {
-    private HashMap<String,SudokuField> data;
+    private HashMap<String,SudokuField> sudokuFieldsHashMap = new HashMap<String, SudokuField>();
+    private HashMap<String,CandidatesForElementInTree> candidatesHashMap;
 
     SudokuTaskTree(String id, SudokuField initialField) {
-        data.put(id, initialField);
+        sudokuFieldsHashMap.put(id, initialField);
     }
 
     /**
@@ -14,8 +15,16 @@ class SudokuTaskTree {
      * @param id
      * @return
      */
-    public SudokuField getFieldById(String id) {
-        return data.get(id);
+    public SudokuField getSudokuFieldById(String id) {
+        return sudokuFieldsHashMap.get(id);
+    }
+
+    public CandidatesForElementInTree getCandidateFieldById(String id) {
+        return candidatesHashMap.get(id);
+    }
+
+    public void putCandidates(String id, CandidatesForElementInTree candidates) {
+        candidatesHashMap.put(id, candidates);
     }
 
     /**

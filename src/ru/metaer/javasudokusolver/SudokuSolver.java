@@ -2,9 +2,13 @@ package ru.metaer.javasudokusolver;
 
 public final class SudokuSolver implements SudokuSolverInterface {
 
+    public static final boolean DEBUG_MODE = true;
+
     private static SudokuSolver instance = new SudokuSolver();
 
     private String initialString = "not defined yet";
+
+    private boolean showSolutionLogToConsole = false;
 
     String getInitialString() {
         return initialString;
@@ -14,6 +18,13 @@ public final class SudokuSolver implements SudokuSolverInterface {
         return instance;
     }
 
+    public void setShowSolutionLogToConsole(boolean showSolutionLogToConsole) {
+        this.showSolutionLogToConsole = showSolutionLogToConsole;
+    }
+
+    public boolean isShowSolutionLogToConsole() {
+        return showSolutionLogToConsole;
+    }
 
     /**
      * Метод 3.
@@ -22,16 +33,11 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @return
      * @throws SudokuSolverLibException
      */
-    public int[][] getSolutionArray(String str) throws SudokuSolverLibException {
-        try{
-            initialString = str;
-            Validator.validateInputString(str);
-            str = Converter.pointsToZeros(str); //replace points to zeros
-            return getSolutionArray(SudokuFieldConverter.toArray(str));
-        }
-        catch (RuntimeException e) { //catch internal library errors
-            throw new InternalErrorException(e.toString());
-        }
+    private int[][] getSolutionArray(String str) throws SudokuSolverLibException {
+        initialString = str;
+        Validator.validateInputString(str);
+        str = Converter.pointsToZeros(str); //replace points to zeros
+        return getSolutionArray(SudokuFieldConverter.toArray(str));
     }
 
     /**
@@ -42,6 +48,10 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @throws SudokuSolverLibException
      */
     public String getSolutionString(String str) throws SudokuSolverLibException {
+        if (DEBUG_MODE) {
+            return SudokuFieldConverter.toString(getSolutionArray(str));
+        }
+
         try{
             return SudokuFieldConverter.toString(getSolutionArray(str));
         }
@@ -49,6 +59,7 @@ public final class SudokuSolver implements SudokuSolverInterface {
             throw new InternalErrorException(e.toString());
         }
     }
+
 
     /**
      * Метод 1. Основной метод!
@@ -62,6 +73,10 @@ public final class SudokuSolver implements SudokuSolverInterface {
             SudokuField field = new SudokuField(arr);
 
             field.validateSudokuCondition();
+
+            if (field.completelyFilled()) {
+                throw new TaskIsAlreadySolvedException();
+            }
 
             SudokuTask task = new SudokuTask(field); //pass pure field to SudokuTask
 

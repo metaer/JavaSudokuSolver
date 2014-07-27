@@ -3,7 +3,7 @@ package ru.metaer.javasudokusolver;
 class SudokuFieldConverter {
 
     /**
-     * Если в качестве индексов используются переменные i,j - то их нумерация начинается с 0. Если x,y - с одного
+     * Если в качестве индексов используются переменные i,j - то их нумерация начинается с 0. Если col, row - с одного
      *
      * @param arr
      * @return
@@ -16,7 +16,7 @@ class SudokuFieldConverter {
 
         for (j = 0; j < Constants.FIELD_SIZE; j++){
             for (i = 0; i < Constants.FIELD_SIZE; i++){
-                s += arr[i][j];
+                s += arr[j][i];
             }
         }
 

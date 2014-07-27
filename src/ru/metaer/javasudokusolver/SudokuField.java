@@ -1,6 +1,6 @@
 package ru.metaer.javasudokusolver;
 
-class SudokuField implements SudokuFieldInterface {
+final class SudokuField extends Field implements SudokuFieldInterface {
 
     /**
      * Массив колонок (массив массивов ячеек)
@@ -42,12 +42,24 @@ class SudokuField implements SudokuFieldInterface {
     }
 
 
-    public int getCellValue(int col, int row){
+    public Integer getCellContents(int col, int row){
         assert Validator.minmax(1,9,col);
         assert Validator.minmax(1,9,row);
 
         return field[col-1][row-1];
     }
+
+    @Override
+    public String getCellValueInStringPerformance(int col, int row) {
+        Integer val = getCellContents(col, row);
+        return val == 0 ? "_" : String.valueOf(val);
+    }
+
+    @Override
+    public String getAdditionalSymbolsForRendering() {
+        return "";
+    }
+
 
     public void setCellValue(int col, int row, int val){
 
@@ -75,4 +87,26 @@ class SudokuField implements SudokuFieldInterface {
     public String toString() {
         return super.toString();//TODO сделать этот метод. Отрисовка поля
     }
+
+//    @Override
+//    protected String renderField() {
+//        for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
+//            for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
+//                System.out.print("|" + getCellValueInStringPerformance(col, row));
+//                if (col == Constants.FIELD_SIZE) {
+//                    System.out.println("|");
+//                }
+//            }
+//        }
+//    }
+
+    public boolean cellIsEmpty(int col, int row) {
+        return (getCellContents(col, row) == 0);
+    }
+
+    public boolean cellIsFilled(int col, int row) {
+        return !cellIsEmpty(col, row);
+    }
+
+
 }

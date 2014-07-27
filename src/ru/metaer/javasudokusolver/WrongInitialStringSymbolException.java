@@ -67,7 +67,7 @@ public final class WrongInitialStringSymbolException extends WrongInitialStringE
         }
 
         //Удалим " ;" на конце и вернем
-        return str.substring(0,str.length() - 3);
+        return StringHelper.removeLastChars(str, 2);
     }
 
 }

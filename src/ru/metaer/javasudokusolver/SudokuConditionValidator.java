@@ -19,7 +19,7 @@ class SudokuConditionValidator {
         String figures = ""; //цифры в строке
 
         for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
-            int currentFigure = field.getCellValue(col, row);
+            int currentFigure = field.getCellContents(col, row);
             if (figures.contains(String.valueOf(currentFigure))) {
                 throw new RepeatInRowException(col, row, currentFigure);
             }
@@ -41,7 +41,7 @@ class SudokuConditionValidator {
         String figures = ""; //цифры в колонке
 
         for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
-            int currentFigure = field.getCellValue(col, row);
+            int currentFigure = field.getCellContents(col, row);
             if (figures.contains(String.valueOf(currentFigure))) {
                 throw new RepeatInColumnException(col, row, currentFigure);
             }
@@ -72,7 +72,7 @@ class SudokuConditionValidator {
         for (int col = x; col <= x + 2; col++) {
             for (int row = y; row <= y + 2; row++) {
 
-                int currentFigure = field.getCellValue(col, row);
+                int currentFigure = field.getCellContents(col, row);
 
                 if (figures.contains(String.valueOf(currentFigure))) {
                     throw new RepeatInSquareException(col, row, squareNumber, currentFigure);
