@@ -6,7 +6,7 @@ import java.util.Map;
 
 class SudokuTaskTree {
     private Map<String,SudokuField> sudokuFieldsHashMap = new HashMap<String, SudokuField>();
-    private HashMap<String, ArrayList<Integer>> candidatesHashMap;
+    private HashMap<String, ArrayList<Integer>> candidatesHashMap = new HashMap<String, ArrayList<Integer>>();
     private Map<String, Integer> colMap = new HashMap<String, Integer>();
     private Map<String, Integer> rowMap = new HashMap<String, Integer>();
     private Map<String, Integer> numberOfConsideredCandidatesMap = new HashMap<String, Integer>();
@@ -14,6 +14,10 @@ class SudokuTaskTree {
 
     SudokuTaskTree(String id, SudokuField initialField) {
         sudokuFieldsHashMap.put(id, initialField);
+    }
+
+    public void setCandidates(String id, ArrayList<Integer> candidates) {
+        candidatesHashMap.put(id, candidates);
     }
 
     public void setSudokuField(String id, SudokuField val) {
@@ -50,7 +54,7 @@ class SudokuTaskTree {
         return sudokuFieldsHashMap.get(id);
     }
 
-    public ArrayList<Integer> getCandidateFieldById(String id) {
+    public ArrayList<Integer> getCandidatesById(String id) {
         return candidatesHashMap.get(id);
     }
 
@@ -98,6 +102,6 @@ class SudokuTaskTree {
     }
 
     private int numberOfAllCandidates(String id) {
-        return candidatesHashMap.size();
+        return candidatesHashMap.get(id).size();
     }
 }

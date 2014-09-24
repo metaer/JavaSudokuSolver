@@ -77,16 +77,16 @@ class SudokuTask {
         //Проставляем n-го кандидата, где n - количество уже рассмотренных кандидатов. Нумерация в списке кандидатов с 0!
         SudokuField newSudokuField = new SudokuField(sudokuField.toArray());
         newSudokuField.setCellValue(col, row, tree.getCandidate(currentId, tree.getNumberOfConsideredCandidates(currentId)));
-        tree.incrementNumberOfConsideredCandidates(currentId);
         convertId();
-
-
+        tree.incrementNumberOfConsideredCandidates(currentId);
+        tree.setSudokuField(currentId, newSudokuField);
     }
 
     private void saveCoordinatesAndCandidatesToTree(CandidatesField candidatesField) {
         int[] coordinates = getCoordinatesWithMinNumberOfCandidates(candidatesField);
         tree.setCol(currentId, coordinates[0]);
         tree.setRow(currentId, coordinates[1]);
+        tree.setCandidates(currentId, candidatesField.getCellContents(coordinates[0], coordinates[1]));
     }
 
     private int[] getCoordinatesWithMinNumberOfCandidates(CandidatesField candidatesField) {
@@ -114,11 +114,13 @@ class SudokuTask {
     }
 
     private void convertId() {
-        if (tree.allCandidateWereConsidered(currentId)) {
+        if (tree.getCandidatesById(currentId) == null || tree.allCandidateWereConsidered(currentId)) {
             currentId = StringHelper.removeLastChar(currentId);
+        } else if (tree.noOneCandidateWasConsidered(currentId)) {
+            currentId += "1";
         }
         else {
-            char lastChar = currentId.charAt(currentId.length());
+            char lastChar = currentId.charAt(currentId.length() - 1);
             String newLastChar = String.valueOf(Integer.valueOf(lastChar) + 1);
             currentId = StringHelper.removeLastChar(currentId);
             currentId = currentId + newLastChar;

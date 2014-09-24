@@ -1,5 +1,8 @@
 package ru.metaer.javasudokusolver;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 public final class SudokuSolver implements SudokuSolverInterface {
     private static SudokuSolver instance = new SudokuSolver();
 
@@ -53,7 +56,10 @@ public final class SudokuSolver implements SudokuSolverInterface {
             return SudokuFieldConverter.toString(getSolutionArray(str));
         }
         catch (RuntimeException e) { //catch internal library errors
-            throw new InternalErrorException(e.toString());
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            throw new InternalErrorException(sw.toString());
         }
     }
 

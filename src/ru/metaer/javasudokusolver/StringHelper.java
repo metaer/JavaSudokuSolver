@@ -20,15 +20,12 @@ class StringHelper {
      */
     public static String fillWithSpaces(String s, int n) {
         int len = s.length();
-
         if (len >= n) {
             return s;
         }
-
         for (int i = 0; i < n - len; i++) {
             s += " ";
         }
-
         return s;
     }
 }

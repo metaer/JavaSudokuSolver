@@ -11,7 +11,7 @@ public final class InternalErrorException extends SudokuSolverLibException {
     }
 
     InternalErrorException(String inputMessage){
-        this.message = getFirstPartMessage() + inputMessage + ". " + new BugReportMessage(initialString).getMessage();
+        this.message = getFirstPartMessage() + ". " + new BugReportMessage(initialString).getMessage() + "\n " + inputMessage;
     }
 
     @Override
