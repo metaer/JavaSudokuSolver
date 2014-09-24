@@ -20,8 +20,7 @@ abstract class Field<T> implements RenderableField {
         return list;
     }
 
-    void renderField() {
-
+    public void renderField() {
         System.out.println("   ");
 
         for (int row = 0; row <= Constants.FIELD_SIZE; row++) {
