@@ -62,8 +62,6 @@ class SudokuTask {
             saveCoordinatesAndCandidatesToTree(candidatesField);
         }
 
-
-
         //TODO если предположение подтвердится - удалить следующий блок кода
         //Если уже все кандидаты рассматривались на текущем id
         if (tree.allCandidateWereConsidered(currentId)) {
@@ -73,7 +71,6 @@ class SudokuTask {
             impasseHandler(candidatesField); //Зашли в тупик. Обработаем эту ситуацию.
             return;
         }
-
 
         int col = tree.getCol(currentId);
         int row = tree.getRow(currentId);
