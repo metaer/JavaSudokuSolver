@@ -1,9 +1,6 @@
 package ru.metaer.javasudokusolver;
 
 public final class SudokuSolver implements SudokuSolverInterface {
-
-    public static final boolean DEBUG_MODE = true;
-
     private static SudokuSolver instance = new SudokuSolver();
 
     private String initialString = "not defined yet";
@@ -20,6 +17,10 @@ public final class SudokuSolver implements SudokuSolverInterface {
 
     public void setShowSolutionLogToConsole(boolean showSolutionLogToConsole) {
         this.showSolutionLogToConsole = showSolutionLogToConsole;
+    }
+
+    public void setShowSolutionLogToConsole() {
+        this.showSolutionLogToConsole = true;
     }
 
     public boolean isShowSolutionLogToConsole() {
@@ -48,10 +49,6 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @throws SudokuSolverLibException
      */
     public String getSolutionString(String str) throws SudokuSolverLibException {
-        if (DEBUG_MODE) {
-            return SudokuFieldConverter.toString(getSolutionArray(str));
-        }
-
         try{
             return SudokuFieldConverter.toString(getSolutionArray(str));
         }
@@ -59,7 +56,6 @@ public final class SudokuSolver implements SudokuSolverInterface {
             throw new InternalErrorException(e.toString());
         }
     }
-
 
     /**
      * Метод 1. Основной метод!
@@ -69,22 +65,15 @@ public final class SudokuSolver implements SudokuSolverInterface {
      * @throws SudokuSolverLibException
      */
     private int[][] getSolutionArray(int[][] arr) throws SudokuSolverLibException {
-
             SudokuField field = new SudokuField(arr);
-
             field.validateSudokuCondition();
-
             if (field.completelyFilled()) {
                 throw new TaskIsAlreadySolvedException();
             }
-
             SudokuTask task = new SudokuTask(field); //pass pure field to SudokuTask
-
             SudokuField solution = task.getSolution();
-
             return solution.toArray();
     }
-
 
     /**
      * Метод 2.
@@ -96,7 +85,6 @@ public final class SudokuSolver implements SudokuSolverInterface {
     private String getSolutionString(int[][] arr) throws SudokuSolverLibException {
         return SudokuFieldConverter.toString(getSolutionArray(arr));
     }
-
 
     /**
      * Конструктор закрыт, т.к. используем паттерн Singleton

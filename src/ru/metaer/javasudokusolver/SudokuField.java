@@ -1,7 +1,6 @@
 package ru.metaer.javasudokusolver;
 
 final class SudokuField extends Field implements SudokuFieldInterface {
-
     /**
      * Массив колонок (массив массивов ячеек)
      */
@@ -16,23 +15,17 @@ final class SudokuField extends Field implements SudokuFieldInterface {
     }
 
     private void setField(int[][] arr){
-
         int x = 0; //Номер колонки (нумерация начинается с 1)
         int y; //Номер ряда (номер ячейки в колонке) (нумерация начинается с 1)
 
         for (int[] col : arr){
-
             x++;
             y = 0;
 
             for (int val : col){
-
                 y++;
-
                 assert Validator.minmax(0,9,val);
-
                 field[x-1][y-1] = val;
-
             }
         }
     }

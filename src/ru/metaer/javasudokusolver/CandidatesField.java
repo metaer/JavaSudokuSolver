@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Заметка. Для уже заполненных ячеек судоку-поля не может быть кандидатов
  */
-class CandidateField extends Field {
+class CandidatesField extends Field {
     private ArrayList<Integer>[][] field = new ArrayList[9][9];
 
     @Override

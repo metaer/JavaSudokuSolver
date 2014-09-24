@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class Field<T> implements RenderableField {
-
     abstract T getCellContents(int col, int row);
 
     public abstract String getCellValueInStringPerformance(int col, int row);
@@ -13,7 +12,7 @@ abstract class Field<T> implements RenderableField {
 
     protected List<T> getCellsList() {
         List list = new ArrayList<T>();
-        for (int col = 1; col < Constants.FIELD_SIZE; col++) {
+        for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
             for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
                 list.add(getCellContents(col, row));
             }

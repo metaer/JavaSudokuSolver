@@ -5,7 +5,7 @@ class Logger {
         sf.renderField();
     }
 
-    static void printField(CandidateField cf) {
+    static void printField(CandidatesField cf) {
         cf.renderField();
     }
 
