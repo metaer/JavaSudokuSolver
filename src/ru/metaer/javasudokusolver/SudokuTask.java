@@ -62,6 +62,8 @@ class SudokuTask {
             saveCoordinatesAndCandidatesToTree(candidatesField);
         }
 
+
+
         //TODO если предположение подтвердится - удалить следующий блок кода
         //Если уже все кандидаты рассматривались на текущем id
         if (tree.allCandidateWereConsidered(currentId)) {
@@ -72,13 +74,15 @@ class SudokuTask {
             return;
         }
 
+
         int col = tree.getCol(currentId);
         int row = tree.getRow(currentId);
         //Проставляем n-го кандидата, где n - количество уже рассмотренных кандидатов. Нумерация в списке кандидатов с 0!
         SudokuField newSudokuField = new SudokuField(sudokuField.toArray());
         newSudokuField.setCellValue(col, row, tree.getCandidate(currentId, tree.getNumberOfConsideredCandidates(currentId)));
+        String oldId = currentId;
         convertId();
-        tree.incrementNumberOfConsideredCandidates(currentId);
+        tree.incrementNumberOfConsideredCandidates(oldId);
         tree.setSudokuField(currentId, newSudokuField);
     }
 
