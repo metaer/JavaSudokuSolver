@@ -7,7 +7,7 @@ public final class RepeatInColumnException extends WrongSudokuConditionException
 
     @Override
     public String getMessage() {
-        return new RepeatInColumnException(col, row, figure).getMessage();
+        return new RepeatInColumnMessage(col, row, figure).getMessage();
     }
 
     public int getCol() {
@@ -31,7 +31,7 @@ public final class RepeatInColumnException extends WrongSudokuConditionException
 
 final class RepeatInColumnMessage extends Message {
     RepeatInColumnMessage(int col, int row, int figure) {
-        ru = "Ошибка в ячейке (" + col + " ;" + row + "). " + "Цифра " + figure + " уже встречалась в колонке №" + col;
-        en = "Error in (" + col + " ;" + row + "). cell. Figure " + figure + "already founded in row №" + col;
+        ru = "Ошибка в ячейке (" + col + ";" + row + "). " + "Цифра " + figure + " уже встречалась в колонке №" + col;
+        en = "Error in (" + col + ";" + row + "). cell. Figure " + figure + "already founded in row №" + col;
     }
 }

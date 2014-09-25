@@ -46,7 +46,7 @@ class SudokuTask {
                 continue;
             }
 
-            //Если есть свободная ячейка, для которой имеется ровно 1 кандидат - проставляем и продолжаем цикл сначала
+            //Если есть хотя бы одна свободная ячейка, для которой имеется ровно 1 кандидат - проставляем и продолжаем цикл сначала
             if (putDownCellWithExactlyOneCandidate(sudokuField, candidatesField)) {
                 //Если задача решена, устанавлиаем решение. Если нет - продолжаем цикл.
                 if (sudokuField.completelyFilled()) {
@@ -56,9 +56,6 @@ class SudokuTask {
                 continue;
             } else {
                 forAllEmptyCellsHaveTwoOrMoreCandidatesHandler(sudokuField, candidatesField);
-//                if (outputField != null) {
-//                    return;
-//                }
             }
         }
     }
@@ -78,12 +75,8 @@ class SudokuTask {
         int col = tree.getCol(currentId);
         int row = tree.getRow(currentId);
         //Проставляем n-го кандидата, где n - количество уже рассмотренных кандидатов. Нумерация в списке кандидатов с 0!
-        SudokuField newSudokuField = new SudokuField(sudokuField.toArray());
+        SudokuField newSudokuField = copyField(sudokuField);
         newSudokuField.setCellValue(col, row, tree.getCandidate(currentId, tree.getNumberOfConsideredCandidates(currentId)));
-//        if (newSudokuField.completelyFilled()) {
-//            outputField = newSudokuField;
-//            return;
-//        }
         currentId = levelDown(currentId);
         tree.incrementNumberOfConsideredCandidates(leveUp(currentId));
         tree.setSudokuField(currentId, newSudokuField);

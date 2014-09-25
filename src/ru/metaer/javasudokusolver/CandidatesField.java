@@ -2,10 +2,8 @@ package ru.metaer.javasudokusolver;
 
 import java.util.ArrayList;
 
-/**
- * Заметка. Для уже заполненных ячеек судоку-поля не может быть кандидатов
- */
 class CandidatesField extends Field {
+    //Заметка. Для уже заполненных ячеек судоку-поля не может быть кандидатов
     private ArrayList<Integer>[][] field = new ArrayList[9][9];
 
     @Override
