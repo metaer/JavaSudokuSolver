@@ -16,6 +16,8 @@ class SudokuTask {
     public SudokuField getSolution() throws NoSolutionException{
         Logger.println("Начанаем решать. Начальное поле:");
         solveSudoku();
+        Logger.println("Задача решена");
+        Logger.printField(outputField);
         return outputField;
     }
 
@@ -24,7 +26,10 @@ class SudokuTask {
      * @throws NoSolutionException
      */
     private void solveSudoku() throws NoSolutionException{
+        int iteration = 0;
         while (true) {
+            iteration++;
+            Logger.println("Итерация № " + iteration);
             SudokuField sudokuField = getCurrentField();
             Logger.printField(sudokuField);
             CandidatesField candidatesField = new CandidatesField();
@@ -51,9 +56,9 @@ class SudokuTask {
                 continue;
             } else {
                 forAllEmptyCellsHaveTwoOrMoreCandidatesHandler(sudokuField, candidatesField);
-                if (outputField != null) {
-                    return;
-                }
+//                if (outputField != null) {
+//                    return;
+//                }
             }
         }
     }
@@ -75,10 +80,10 @@ class SudokuTask {
         //Проставляем n-го кандидата, где n - количество уже рассмотренных кандидатов. Нумерация в списке кандидатов с 0!
         SudokuField newSudokuField = new SudokuField(sudokuField.toArray());
         newSudokuField.setCellValue(col, row, tree.getCandidate(currentId, tree.getNumberOfConsideredCandidates(currentId)));
-        if (newSudokuField.completelyFilled()) {
-            outputField = newSudokuField;
-            return;
-        }
+//        if (newSudokuField.completelyFilled()) {
+//            outputField = newSudokuField;
+//            return;
+//        }
         currentId = levelDown(currentId);
         tree.incrementNumberOfConsideredCandidates(leveUp(currentId));
         tree.setSudokuField(currentId, newSudokuField);
