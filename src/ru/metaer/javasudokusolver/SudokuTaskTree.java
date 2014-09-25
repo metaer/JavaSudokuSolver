@@ -90,6 +90,7 @@ class SudokuTaskTree {
             numberOfConsideredCandidatesMap.put(id, 1);
         } else {
             number++;
+            numberOfConsideredCandidatesMap.put(id,number);
         }
     }
 

@@ -14,10 +14,7 @@ class SudokuTask {
     }
 
     public SudokuField getSolution() throws NoSolutionException{
-        if (SudokuSolver.getInstance().isShowSolutionLogToConsole()) {
-            Logger.println("Начанаем решать. Начальное поле:");
-            Logger.printField(initialField);
-        }
+        Logger.println("Начанаем решать. Начальное поле:");
         solveSudoku();
         return outputField;
     }
@@ -29,8 +26,10 @@ class SudokuTask {
     private void solveSudoku() throws NoSolutionException{
         while (true) {
             SudokuField sudokuField = getCurrentField();
+            Logger.printField(sudokuField);
             CandidatesField candidatesField = new CandidatesField();
 
+            Logger.println("Текущий id: " + currentId);
             Logger.println("Составляем список кандидатов для каждой пустой ячейки...");
             candidatesField.makeCandidatesField(sudokuField);
             Logger.println("Вот они:");
@@ -42,8 +41,8 @@ class SudokuTask {
                 continue;
             }
 
-            //Если есть свободные ячейки, для которых имеется ровно 1 кандидат - проставляем таких кандидатов в судоку-поле, продолжаем цикл сначала
-            if (putDownCellsWithExactlyOneCandidate(sudokuField, candidatesField)) {
+            //Если есть свободная ячейка, для которой имеется ровно 1 кандидат - проставляем и продолжаем цикл сначала
+            if (putDownCellWithExactlyOneCandidate(sudokuField, candidatesField)) {
                 //Если задача решена, устанавлиаем решение. Если нет - продолжаем цикл.
                 if (sudokuField.completelyFilled()) {
                     outputField = sudokuField;
@@ -52,6 +51,9 @@ class SudokuTask {
                 continue;
             } else {
                 forAllEmptyCellsHaveTwoOrMoreCandidatesHandler(sudokuField, candidatesField);
+                if (outputField != null) {
+                    return;
+                }
             }
         }
     }
@@ -62,12 +64,8 @@ class SudokuTask {
             saveCoordinatesAndCandidatesToTree(candidatesField);
         }
 
-        //TODO если предположение подтвердится - удалить следующий блок кода
         //Если уже все кандидаты рассматривались на текущем id
         if (tree.allCandidateWereConsidered(currentId)) {
-            //fixme сюда не зайдет! Если зайдет вывести сообщение с кучей "!"
-            System.out.println("Сцуко зашло!!!!!!!!!!!");
-            System.exit(0);
             impasseHandler(candidatesField); //Зашли в тупик. Обработаем эту ситуацию.
             return;
         }
@@ -77,10 +75,17 @@ class SudokuTask {
         //Проставляем n-го кандидата, где n - количество уже рассмотренных кандидатов. Нумерация в списке кандидатов с 0!
         SudokuField newSudokuField = new SudokuField(sudokuField.toArray());
         newSudokuField.setCellValue(col, row, tree.getCandidate(currentId, tree.getNumberOfConsideredCandidates(currentId)));
-        String oldId = currentId;
-        convertId();
-        tree.incrementNumberOfConsideredCandidates(oldId);
+        if (newSudokuField.completelyFilled()) {
+            outputField = newSudokuField;
+            return;
+        }
+        currentId = levelDown(currentId);
+        tree.incrementNumberOfConsideredCandidates(leveUp(currentId));
         tree.setSudokuField(currentId, newSudokuField);
+    }
+
+    private String leveUp(String id) {
+        return StringHelper.removeLastChar(id);
     }
 
     private void saveCoordinatesAndCandidatesToTree(CandidatesField candidatesField) {
@@ -109,23 +114,13 @@ class SudokuTask {
             throw new NoSolutionException();
         }
         else {
-            convertId();
+            currentId = leveUp(currentId);
             return;
         }
     }
 
-    private void convertId() {
-        if (tree.getCandidatesById(currentId) == null || tree.allCandidateWereConsidered(currentId)) {
-            currentId = StringHelper.removeLastChar(currentId);
-        } else if (tree.noOneCandidateWasConsidered(currentId)) {
-            currentId += "1";
-        }
-        else {
-            char lastChar = currentId.charAt(currentId.length() - 1);
-            String newLastChar = String.valueOf(Integer.valueOf(lastChar) + 1);
-            currentId = StringHelper.removeLastChar(currentId);
-            currentId = currentId + newLastChar;
-        }
+    private String levelDown(String id) {
+        return id + String.valueOf(tree.getNumberOfConsideredCandidates(id) + 1);
     }
 
     /**
@@ -134,19 +129,17 @@ class SudokuTask {
      * @param candidatesField
      * @return
      */
-    private boolean putDownCellsWithExactlyOneCandidate(SudokuField sudokuField, CandidatesField candidatesField) {
-        boolean returnValue = false;
+    private boolean putDownCellWithExactlyOneCandidate(SudokuField sudokuField, CandidatesField candidatesField) {
         for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
             for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
                 ArrayList<Integer> cellContentsInCandidatesField = candidatesField.getCellContents(col, row);
                 if (cellContentsInCandidatesField != null && cellContentsInCandidatesField.size() == 1) {
                     sudokuField.setCellValue(col, row, cellContentsInCandidatesField.get(0));
-                    returnValue = true;
+                    return true;
                 }
             }
         }
-        Logger.printField(sudokuField);
-        return returnValue;
+        return false;
     }
 
     private SudokuField copyField(SudokuField field) {
