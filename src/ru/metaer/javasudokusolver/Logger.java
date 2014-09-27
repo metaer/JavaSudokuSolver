@@ -1,11 +1,30 @@
 package ru.metaer.javasudokusolver;
 
-class Logger {
+public class Logger {
+
+    private static boolean showSolutionLogToConsole = false;
+
+    public static void setShowSolutionLogToConsole(boolean showSolutionLogToConsole) {
+        Logger.showSolutionLogToConsole = showSolutionLogToConsole;
+    }
+
+    public static void setShowSolutionLogToConsole() {
+        Logger.showSolutionLogToConsole = true;
+    }
+
+    public boolean isShowSolutionLogToConsole() {
+        return showSolutionLogToConsole;
+    }
+
     static void printField(RenderableField f) {
-        f.renderField();
+        if (showSolutionLogToConsole) {
+            f.renderField();
+        }
     }
 
     static void println (String str) {
-        System.out.println(str);
+        if (showSolutionLogToConsole) {
+            System.out.println(str);
+        }
     }
 }

@@ -6,7 +6,7 @@ import java.io.StringWriter;
 public final class SudokuSolver implements SudokuSolverInterface {
     private static SudokuSolver instance = new SudokuSolver();
 
-    private String initialString = "not defined yet";
+    private String initialString;
 
     private boolean showSolutionLogToConsole = false;
 
@@ -16,18 +16,6 @@ public final class SudokuSolver implements SudokuSolverInterface {
 
     public static SudokuSolver getInstance() {
         return instance;
-    }
-
-    public void setShowSolutionLogToConsole(boolean showSolutionLogToConsole) {
-        this.showSolutionLogToConsole = showSolutionLogToConsole;
-    }
-
-    public void setShowSolutionLogToConsole() {
-        this.showSolutionLogToConsole = true;
-    }
-
-    public boolean isShowSolutionLogToConsole() {
-        return showSolutionLogToConsole;
     }
 
     /**
