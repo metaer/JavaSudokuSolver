@@ -1,4 +1,4 @@
-JavaSudokuSolver
+Библиотека JavaSudokuSolver
 ================
 
 Базовое использование:
