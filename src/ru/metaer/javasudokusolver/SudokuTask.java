@@ -29,6 +29,9 @@ class SudokuTask {
         int iteration = 0;
         while (true) {
             iteration++;
+//            if (iteration == 35) {
+//                System.exit(0);
+//            }
             Logger.println("Итерация № " + iteration);
             SudokuField sudokuField = getCurrentField();
             Logger.printField(sudokuField);
@@ -95,8 +98,8 @@ class SudokuTask {
 
     private int[] getCoordinatesWithMinNumberOfCandidates(CandidatesField candidatesField) {
         for (int i = 2; i <= 9; i++) {
-            for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
-                for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
+            for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
+                for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
                     ArrayList candidates = candidatesField.getCellContents(col, row);
                     if (candidates != null && candidates.size() == i) {
                         return new int[]{col, row};

@@ -50,8 +50,8 @@ class CandidatesField extends Field {
      * @param sudokuField
      */
     public void makeCandidatesField(SudokuField sudokuField) {
-        for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
-            for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
+        for (int col = 1; col <= Constants.FIELD_SIZE; col++) {
+            for (int row = 1; row <= Constants.FIELD_SIZE; row++) {
                 if (sudokuField.cellIsFilled(col, row)) {
                     continue;
                 }

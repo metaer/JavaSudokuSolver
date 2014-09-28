@@ -16,7 +16,7 @@ class SudokuFieldConverter {
 
         for (j = 0; j < Constants.FIELD_SIZE; j++){
             for (i = 0; i < Constants.FIELD_SIZE; i++){
-                s += arr[j][i];
+                s += arr[i][j];
             }
         }
 
