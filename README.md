@@ -4,7 +4,7 @@ JavaSudokuSolver
 Базовое использование:
 
 
-<code>
+``` java
 import ru.metaer.javasudokusolver.SudokuSolver;
 import ru.metaer.javasudokusolver.SudokuSolverLibException;
 
@@ -20,4 +20,4 @@ public class BasicUsage {
         }
     }
 }
-</code>
+```
