@@ -12,7 +12,7 @@ public class Logger {
         Logger.showSolutionLogToConsole = true;
     }
 
-    public boolean isShowSolutionLogToConsole() {
+    public static boolean isShowSolutionLogToConsole() {
         return showSolutionLogToConsole;
     }
 
